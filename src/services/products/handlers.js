@@ -1,13 +1,14 @@
-import pg from "pg"
 import models from "../../database/models/index.js"
+import Users from "../../database/models/Users.js"
 
-const pool = new pg.Pool()
 
-const {Products, Reviews} = models
+const {Products, Reviews, ProductsCategory, Category} = models
 
 const findAllProducts = async (req,res,next) => {
     try {
-        const products = await Products.findAll({include: Reviews})
+        const products = await Products.findAll({
+            include: [{model: Category, through: {attributes: []}}, Users]
+        })
         res.send(products)
     } catch (error) {
         console.log(error)
