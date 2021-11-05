@@ -5,10 +5,12 @@ const { DataTypes } = s
 
 const ProductsCategory = sequelize.define(
     "productsCategory",
-    {
-        id: DataTypes.UUID,
+    {    
+        id: {
+        type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
-        primaryKey: true
+        primaryKey: true,
+        },
     },
     )
 

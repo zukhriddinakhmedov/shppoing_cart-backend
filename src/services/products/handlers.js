@@ -1,8 +1,7 @@
 import models from "../../database/models/index.js"
-import Users from "../../database/models/Users.js"
 
 
-const {Products, Reviews, ProductsCategory, Category} = models
+const {Products, Users, Reviews, ProductsCategory, Category} = models
 
 const findAllProducts = async (req,res,next) => {
     try {
