@@ -3,8 +3,8 @@ import { Sequelize } from "sequelize"
 const {PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT } = process.env
 
 const sequelize = new Sequelize(PGDATABASE, PGUSER, PGPASSWORD,  {
-    host: PGHOST,
     port: PGPORT,
+    host: PGHOST,
     dialect: "postgres",
     dialectOptions: {
         ssl: {
@@ -14,7 +14,7 @@ const sequelize = new Sequelize(PGDATABASE, PGUSER, PGPASSWORD,  {
     },
 }
 )
-console.log("Sequelize has been create successfully")
+console.log("Sequelize has been created successfully")
 
 export const testConnection = async () => {
     try {
