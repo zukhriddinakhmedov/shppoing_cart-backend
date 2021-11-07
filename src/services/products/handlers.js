@@ -6,7 +6,7 @@ const {Products, Users, Reviews, ProductsCategory, Category} = models
 const findAllProducts = async (req,res,next) => {
     try {
         const products = await Products.findAll({
-            include: [{model: Category, through: {attributes: []}}, Users]
+            include: [{model: Category, through: {attributes: []}}]
         })
         res.send(products)
     } catch (error) {
@@ -56,7 +56,7 @@ const deleteProduct = async (req,res,next) => {
                 id: req.params.id,
             },
         })
-        res.send(products)
+        res.send()
     } catch (error) {
         console.log(error)
         next(error)
