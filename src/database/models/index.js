@@ -9,10 +9,10 @@ Products.hasMany(Reviews, {onDelete: "CASCADE"})
 Reviews.belongsTo(Products, {onDelete: "CASCADE"})
 
 Products.belongsToMany(Category, {
-    through: {model: ProductsCategory, unique: false},
+    through: {model: ShoppingCart, unique: false},
 })
 Category.belongsToMany(Products, {
-    through: {model: ProductsCategory, unique: false}
+    through: {model: ShoppingCart, unique: false}
 })
 
 Users.hasMany(Reviews, {onDelete: "CASCADE"})

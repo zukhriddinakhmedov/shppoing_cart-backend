@@ -1,17 +1,19 @@
 import { Sequelize } from "sequelize"
 
-const {PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT } = process.env
+const {PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT, NODE_ENV } = process.env
 
 const sequelize = new Sequelize(PGDATABASE, PGUSER, PGPASSWORD,  {
-    port: PGPORT,
     host: PGHOST,
+    port: PGPORT,
     dialect: "postgres",
-    dialectOptions: {
-        ssl: {
-         require: true,
-         rejectUnauthorised: false,
+    ...(NODE_ENV === "production" &&  {
+        dialectOptions: {
+            ssl: {
+             require: true,
+             rejectUnauthorised: false,
+            },
         },
-    },
+    })
 }
 )
 console.log("Sequelize has been created successfully")
