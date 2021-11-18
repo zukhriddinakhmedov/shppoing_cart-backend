@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { testConnection, connectDB } from "./database/index.js"
+import { syncSequelize } from "./database/index.js"
 import productsRouter from "./services/products/index.js"
 import reviewsRouter from "./services/reviews/index.js"
 import usersRouter from "./services/users/index.js"
@@ -22,8 +22,7 @@ server.use("/categories", categoryRouter)
 
 server.listen(PORT, async() => {
     console.log(`Server is listening on port ${PORT}`)
-    await testConnection()
-    await connectDB()
+    await syncSequelize()
 })
 
 server.on("error", (error) => {

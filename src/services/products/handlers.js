@@ -1,12 +1,15 @@
 import models from "../../database/models/index.js"
 
 
-const {Products, Users, Reviews, ProductsCategory, Category} = models
+const {Products, Users, Reviews, ShoppingCart, Category} = models
 
 const findAllProducts = async (req,res,next) => {
     try {
         const products = await Products.findAll({
-            include: [{model: Category, through: {attributes: []}}]
+            where: req.query.name
+            ? {name: { [Op.iLike]: `%${req.query.name}%`} }
+            : {},
+            include: {model: Category, where: req.query.category ? { name: req.query.category} : {}, } 
         })
         res.send(products)
     } catch (error) {

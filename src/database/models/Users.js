@@ -26,6 +26,9 @@ const Users = sequelize.define(
                 isEmail: true
             },
         },
+    },
+    {
+        schema: "development",
     }
 )
 

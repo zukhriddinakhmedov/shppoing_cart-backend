@@ -11,7 +11,9 @@ const ShoppingCart = sequelize.define(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-
+    },
+    {
+        schema: "development",
     }
 )
 

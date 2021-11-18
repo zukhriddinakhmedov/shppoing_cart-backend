@@ -17,10 +17,6 @@ const Products = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        category: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         image: {
             type: DataTypes.TEXT,
             allowNull: false,
@@ -29,6 +25,9 @@ const Products = sequelize.define(
             type: DataTypes.FLOAT,
             allowNull: false,
         },
+    },
+    {
+        schema: "development",
     }
 )
 // {

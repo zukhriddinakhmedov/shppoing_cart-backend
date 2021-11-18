@@ -5,17 +5,26 @@ import Users from "./Users.js"
 import ShoppingCart from "./ShoppingCart.js"
 // 1) => hasMany 2) => belongsTo
 
-Products.hasMany(Reviews, {onDelete: "CASCADE"})
-Reviews.belongsTo(Products, {onDelete: "CASCADE"})
-
-Products.belongsToMany(Category, {
-    through: {model: ShoppingCart, unique: false},
+Category.hasMany(Products, {
+    onDelete: "cascade",
+    foreignKey: {allowNull: false}
 })
-Category.belongsToMany(Products, {
-    through: {model: ShoppingCart, unique: false}
+Products.belongsTo(Category, {
+    onDelete: "cascade",
+    foreignKey: {allowNull: false}
 })
 
-Users.hasMany(Reviews, {onDelete: "CASCADE"})
-Reviews.belongsTo(Users, {onDelete: "CASCADE"})
+Products.belongsToMany(Users, {through: {model: ShoppingCart, unique: false} } )
+
+Users.belongsToMany(Products ,{ through: {model: ShoppingCart, unique: false} } )
+
+Products.hasMany(ShoppingCart)
+ShoppingCart.belongsTo(Products)
+
+Users.hasMany(ShoppingCart)
+ShoppingCart.belongsTo(Users)
+
+Users.hasMany(Reviews)
+Reviews.belongsTo(Users)
 
 export default { Products, Reviews, Users, Category, ShoppingCart }

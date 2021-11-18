@@ -13,11 +13,11 @@ const Reviews = sequelize.define("reviews", {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-})
+},
+{
+    schema: "development",
+}
+)
 
 export default Reviews
 
